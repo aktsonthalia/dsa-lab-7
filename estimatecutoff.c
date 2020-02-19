@@ -66,7 +66,6 @@ int estimateCutoff(FILE* f, int size)
 	readFromFile(f, list1, min);
 	Employee list2[max];
 	readFromFile(f, list2, max);
-	rewind(f);
 	runningtimes r1 = testRun(list1, min);
 	runningtimes r2 = testRun(list2, max);
 
