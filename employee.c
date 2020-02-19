@@ -48,13 +48,12 @@ void readFromFile(FILE* f, Employee list[], int N)
 	int empID;
 	int i=0;
 
-	while(true)
+	while(i<N)
 	{
 		fscanf(f, "%s %d\n", name, &empID);
 		list[i++] = createEmployee(name, empID);
-		if(i==N)
-			break;
 	}
+	rewind(f);
 }
 
 
@@ -63,4 +62,18 @@ void shallowCopy(Employee dest[], Employee src[], int N)
 {
 	for(int i=0; i<N; i++)
 		dest[i] = src[i];
+}
+
+void fprintEmployee(FILE* f, Employee employee)
+{
+	fprintf(f, "Name: %s, ID: %d\n", employee -> name, employee -> empID);	
+}
+
+void fprintEmployeeList(FILE* f, Employee list[], int N)
+{
+	for(int i=0; i<N; i++)
+	{
+		fprintf(f, "%d. ", i+1);
+		fprintEmployee(f, list[i]);
+	}
 }
