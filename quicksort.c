@@ -1,23 +1,38 @@
 #include "employee.h"
 #include "quicksort.h"
+#include "stack.h"
 
-extern void sort_q(Employee list[], int N, int S)
+void sort_q(Employee list[], int N, int S)
 {
-	int length;
-	int num_segments;
+	Stack boundaries = createStack();
+	int start = 0;
+	int end = N-1;
+	push(boundaries, end);
+	push(boundaries, start);
+	int pivot;
 
-	if(S < 1)
-		S = 1;
-
-	for(length = S; length <= N; length++)
+	while(isEmpty(boundaries) == 0)
 	{
-		num_segments = N / length;
-		for(int i=0; i<num_segments; i++)
-			step(list, i*length, (i+1)*length-1);
+		start = pop(boundaries);
+		end = pop(boundaries);
+
+		pivot = partition(list, start, end);
+
+		if(pivot - start > S)
+		{
+			push(boundaries, pivot-1);
+			push(boundaries, start);
+		}
+
+		if(end - pivot > S)
+		{
+			push(boundaries, end);
+			push(boundaries, pivot+1);
+		}
 	}
 }
 
-extern void step(Employee list[], int start, int end)
+int partition(Employee list[], int start, int end)
 {
 	Employee temp1, temp2, temp3;
 	Employee pivot = list[end];
@@ -47,5 +62,6 @@ extern void step(Employee list[], int start, int end)
 	temp1 = list[i];
 	list[i] = pivot;
 	list[end] = temp1;
+	return i;
 
 }
