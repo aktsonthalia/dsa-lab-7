@@ -44,14 +44,16 @@ void printEmployeeList(Employee list[], int N)
 
 void readFromFile(FILE* f, Employee list[], int N)
 {
+	// printf("readFromFile working\n");
 	char name[name_len];
 	int empID;
 	int i=0;
-
+	// printf("%d\n", list==NULL);
 	while(i<N)
 	{
 		fscanf(f, "%s %d\n", name, &empID);
 		list[i++] = createEmployee(name, empID);
+		// printf("readFromFile %d\n", i);
 	}
 	rewind(f);
 }
