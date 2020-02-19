@@ -12,3 +12,5 @@ void printEmployee(Employee employee);
 void printEmployeeList(Employee list[], int N);
 
 void readFromFile(FILE* f, Employee list[], int N);
+
+void shallowCopy(Employee dest[], Employee src[], int N);

@@ -56,3 +56,11 @@ void readFromFile(FILE* f, Employee list[], int N)
 			break;
 	}
 }
+
+
+
+void shallowCopy(Employee dest[], Employee src[], int N)
+{
+	for(int i=0; i<N; i++)
+		dest[i] = src[i];
+}
