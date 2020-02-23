@@ -34,34 +34,30 @@ void sort_q(Employee list[], int N, int S)
 
 int partition(Employee list[], int start, int end)
 {
-	Employee temp1, temp2, temp3;
-	Employee pivot = list[end];
+	Employee temp;
+	int pivot_index = (start + end) / 2;
+	Employee pivot = list[pivot_index];
 	int pivot_key = getEmpID(pivot);
-	int i = start, k = end;
+	int i = start-1, k = end;
 	int current_key;
 
 	for(int j=start; j<end; j++)
 	{
 		current_key = getEmpID(list[j]);
-		if(current_key > pivot_key)
-			continue;
 
-		temp1 = list[j];
-		temp3 = list[i];
-
-		for(int k=i; k<j; k++)
-		{	
-			temp2 = list[k+1];
-			list[k+1] = temp3;
-			temp3 = temp2;
+		if(current_key <= pivot_key)
+		{
+			i++;
+			temp = list[j];
+			list[j] = list[i];
+			list[i] = temp;
 		}
+	}
 
-		list[i++] = temp1;
-	}	
-
-	temp1 = list[i];
-	list[i] = pivot;
-	list[end] = temp1;
-	return i;
+	temp = list[i+1];
+	list[i+1] = list[pivot_index];
+	list[pivot_index] = temp;
+	
+	return i+1;
 
 }

@@ -13,12 +13,12 @@
 
 #define MAX 20000
 #define a 1
-#define b 7
+#define b 6
 #define TIME_DATA "Running_times.txt"
 
 void main(int argc, char* argv[])
 {
-	int n = 1000000000;
+	// int n = 1000000000;
 	FILE* inputfile = fopen(argv[1], "r");
 	FILE* outputfile;
 	FILE* tf = fopen(TIME_DATA, "w");
@@ -47,7 +47,7 @@ void main(int argc, char* argv[])
 
 		//calculating execution time for the sorting algorithm
 		gettimeofday(&t1, NULL);
-		mixedsort(list2, N, cutoff);
+		sort_q(list2, N, cutoff);
 		gettimeofday(&t2, NULL);
 		
 		elapsedTime = (t2.tv_sec - t1.tv_sec) + (t2.tv_usec - t1.tv_usec) / 1000000.0;
