@@ -1,0 +1,2 @@
+compare: 
+	bash compare.sh
